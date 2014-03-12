@@ -1,0 +1,22 @@
+package nl.gideondk.metaphor
+
+import spray.json._
+import shapeless._
+import syntax._
+import syntax.singleton._
+
+import record._
+import scala.util.Try
+import shapeless.ops.record.Selector
+
+
+trait Extractors extends DefaultJsonProtocol {
+[#  
+  def extract[[#V1: JsonReader#]](js: JsValue, [#field1: String#]) = Try {
+    [#(field1 ->> fromField[V1](js, field1)) :: #
+    ] 
+    HNil
+  }#
+
+]
+}

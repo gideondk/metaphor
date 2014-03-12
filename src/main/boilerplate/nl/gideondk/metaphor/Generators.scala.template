@@ -1,0 +1,19 @@
+package nl.gideondk.metaphor
+
+import spray.json._
+import shapeless._
+import syntax._
+import syntax.singleton._
+
+import record._
+import scala.util.Try
+import shapeless.ops.record.Selector
+
+trait Generators extends DefaultJsonProtocol {
+[#  
+  def generate[A <: HList, [#V1#]](record: A, [#field1: Witness#])(implicit [#sel1: Selector.Aux[A, field1.T, V1]#], [#writer1: JsonWriter[V1]#]) = 
+  	Map([#field1.value.toString -> record.get(field1).toJson#]).toJson
+  #
+
+]
+}
