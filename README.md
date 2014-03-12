@@ -3,7 +3,7 @@
 ## Overview
 Metaphor is a small library which leverages the parsing and generating capabilities  of [spray-json](https://github.com/spray/spray-json) into a solution for the generation and extraction of [Shapeless Records](https://github.com/milessabin/shapeless/wiki/Feature-overview:-shapeless-2.0.0#extensible-records):
 
-	Shapeless provides an implementation of extensible records modelled as HLists of values tagged with the singleton types of their keys. This means that there is no concrete representation needed at all for the keys. Amongst other things this will allow subsequent work on Generic to map case classes directly to records with their member names encoded in their element types.
+*Shapeless provides an implementation of extensible records modelled as HLists of values tagged with the singleton types of their keys. This means that there is no concrete representation needed at all for the keys. Amongst other things this will allow subsequent work on Generic to map case classes directly to records with their member names encoded in their element types.*
 
 ## Usage
 Usage of Metaphor is very straight forward. Generation is done by using the `generate` function, supplying the record and the appropriate fields to be serialised:
@@ -26,6 +26,7 @@ Extraction is done in a similar manner:
 ```scala
 val js = """{"title": "Types and Programming Languages", "id": 262162091, "price": 44.11}""".asJson
 val book = Metaphor.extract[String, Long, Float](js, "title", "id", "price")
+book("title") == "Types and Programming Languages"
 ```
 
 Extracting the appropriate types from the supplied JSON and generating a record with the same supplied field names. 
